@@ -1,0 +1,21 @@
+libhijack,
+a pair of simple LD_PRELOAD wrappers
+
+(1) libhijackfopen (hijackfopen.c)
+    redirects user specified path (HIJACK_FOPEN_SOURCE) in fopen calls to
+    different user specified path (HIJACK_FOPEN_TARGET)
+
+(2) libhijackioctl (hijackioctl.c)
+    rewrites result of ioctl call with SIOCGIFHWADDR request to
+    user specified (HIJACK_IOCTL_TARGET) hardware address
+
+a pair testing applications is provided, 
+
+(1) testfopen (testfopen.c)
+(2) testioctl (testioctl.c)
+
+and a pair of wrappers to demonstrate the effects of the above libraries
+
+(1) testfopen.wrap (testfopen.c)
+(2) testioctl.wrap (testioctl.c)
+

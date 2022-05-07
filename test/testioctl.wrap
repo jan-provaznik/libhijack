@@ -1,0 +1,16 @@
+#!/bin/bash
+TESTBASE=$(dirname "${0}")
+export HIJACK_IOCTL_TARGET="DEADBEEF1337"
+
+echo "Original unadulterated invocation"
+echo
+
+"${TESTBASE}/testioctl"
+
+echo
+echo "Hijacked ioctl invocation"
+echo
+
+LD_PRELOAD="${TESTBASE}/libhijackioctl.so" \
+  "${TESTBASE}/testioctl"
+

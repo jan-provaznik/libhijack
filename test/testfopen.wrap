@@ -1,0 +1,17 @@
+#!/bin/bash
+TESTBASE=$(dirname "${0}")
+export HIJACK_FOPEN_SOURCE="/etc/passwd"
+export HIJACK_FOPEN_TARGET="/etc/vimrc"
+
+echo "Original unadulterated invocation"
+echo
+
+"${TESTBASE}/testfopen" /etc/passwd
+
+echo
+echo "Hijacked fopen invocation"
+echo
+
+LD_PRELOAD="${TESTBASE}/libhijackfopen.so" \
+  "${TESTBASE}/testfopen" /etc/passwd
+
